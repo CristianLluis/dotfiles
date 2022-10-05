@@ -1,0 +1,17 @@
+[color]
+    ui = true
+[user]
+    name = Cristian Lluis
+    email = lluis.cristian@gmail.com
+[push]
+    default = simple
+[core]
+    autocrlf = input
+    editor = code --wait
+        excludesfile = ~/.gitignore_global
+[pull]
+    rebase = true
+[diff]
+    tool = vscode
+[difftool "vscode"]
+    cmd = code --wait --diff $LOCAL $REMOTE
