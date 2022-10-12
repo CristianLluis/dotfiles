@@ -16,13 +16,25 @@
 pyvenv.cfg
 .venv
 venv/
-env.bak/
-venv.bak/
+*_venv/
 pip-selfcheck.json
 # comment out if env is needed
-.env
-env/
-ENV/
+# .env
+# env/
+# ENV/
 
 ### Pyenv ###
 .python-version
+
+### diverses ###
+*.bak/
+*.bak
+favicon.ico
+*.sql
+
+### temp ###
+*/Dockerfile.dev
+*/Dockerfile.testing
+
+### dls specific ###
+kub_*.json
