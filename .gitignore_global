@@ -35,6 +35,3 @@ favicon.ico
 ### temp ###
 */Dockerfile.dev
 */Dockerfile.testing
-
-### dls specific ###
-kub_*.json

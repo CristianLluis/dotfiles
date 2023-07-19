@@ -62,10 +62,16 @@ alias gcam="git commit -a --amend --no-edit"
 alias gallcampf="git add -A && git commit --amend --no-edit && git push -f"
 alias machsgeil="isort . && black . && flake8"
 alias machsrichtiggeil="bin/isort . && bin/black . && bin/flake8"
+
+# I allways mess up git pull... My fingers just seem to want to write gitp ull...
+alias gitp="git "
+alias ull='pull'
+
 #custom git alias overwriting plugin
 alias glg="git --no-pager log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%d%C(reset) - %C(white)%s%C(reset) %C(magenta)- %an%C(reset) -%C(cyan)%h%C(reset) @%C(green)(%ar)%C(reset)' --all -20"
 alias gba="git --no-pager branch -a"
 alias main="gco master"
+alias grpo="git remote prune origin"
 
 # kubernetes alias
 alias k=kubectl
@@ -126,25 +132,14 @@ eval $(thefuck --alias)
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-eval export PATH="/Users/cristianlluis/.jenv/shims:${PATH}"
-export JENV_SHELL=zsh
-export JENV_LOADED=1
-unset JAVA_HOME
-unset JDK_HOME
-source '/usr/local/Cellar/jenv/0.5.5_2/libexec/libexec/../completions/jenv.zsh'
-jenv rehash 2>/dev/null
-jenv refresh-plugins
-jenv() {
-  type typeset &> /dev/null && typeset command
-  command="$1"
-  if [ "$#" -gt 0 ]; then
-    shift
-  fi
 
-  case "$command" in
-  enable-plugin|rehash|shell|shell-options)
-    eval `jenv "sh-$command" "$@"`;;
-  *)
-    command jenv "$command" "$@";;
-  esac
+touchand() {
+    if ! [ "$1" ]; then
+        echo "need a file!" >&2
+        return 1
+    fi
+    : > "$1" && vi "$1"
 }
+
+# opendls shorthands
+alias external-web="dc up external-frontend web external-solr create-s3-buckets internal-backend -d"
