@@ -58,9 +58,8 @@ alias gs="git status"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias grs="git rebase --skip"
-alias gcam="git commit -a --amend --no-edit"
 alias gallcampf="git add -A && git commit --amend --no-edit && git push -f"
-alias machsgeil="isort . && black . && flake8"
+alias machsgeil="_search_files && isort . && black . && flake8"
 alias machsrichtiggeil="bin/isort . && bin/black . && bin/flake8"
 
 # I allways mess up git pull... My fingers just seem to want to write gitp ull...
@@ -70,8 +69,11 @@ alias ull='pull'
 #custom git alias overwriting plugin
 alias glg="git --no-pager log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%d%C(reset) - %C(white)%s%C(reset) %C(magenta)- %an%C(reset) -%C(cyan)%h%C(reset) @%C(green)(%ar)%C(reset)' --all -20"
 alias gba="git --no-pager branch -a"
-alias main="gco master"
+alias main="gco master && git pull && git remote prune origin"
 alias grpo="git remote prune origin"
+#override glog and gloga from git plugin
+alias glog="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)'"
+alias gloga="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)' --all"
 
 # kubernetes alias
 alias k=kubectl
@@ -140,6 +142,84 @@ touchand() {
     fi
     : > "$1" && vi "$1"
 }
+
+
+_search_files() {
+    local error_found=0
+
+    search_for_only() {
+        local search_directory="./frontend/test"
+
+        # Function to search for ".only" in .cy.js files using find
+        search_cyjs_files() {
+            local directory="$1"
+            local cyjs_files=($(find "$directory" -type f -name "*.cy.js"))
+            for file in "${cyjs_files[@]}"; do
+                if grep -q -E '\.only' "$file"; then
+                    echo "Error: Found '.only' in file '$file'"
+                    error_found=1
+                fi
+            done
+        }
+
+        # Start the search in the specified directory
+        search_cyjs_files "$search_directory"
+    }
+
+    search_for_debugger() {
+        local search_directory="./frontend"
+
+        # Function to search for "debugger" in .js and .vue files using find
+        search_js_vue_files() {
+            local directory="$1"
+            local js_vue_files=($(find "$directory" \( -type d \( -name node_modules -o -name .nuxt \) -prune -false -o -type f \( -name "*.js" -o -name "*.vue" \) \)))
+            for file in "${js_vue_files[@]}"; do
+                if grep -q "debugger" "$file"; then
+                    echo "Error: Found 'debugger' in file '$file'"
+                    error_found=1
+                fi
+            done
+        }
+
+        # Start the search in the specified directory
+        search_js_vue_files "$search_directory"
+    }
+
+
+
+    search_for_breakpoint() {
+        local search_directory="./backend"
+
+        # Function to search for "breakpoint()" in .py files using find
+        search_py_files() {
+            local directory="$1"
+            local py_files=($(find "$directory" -type f -name "*.py"))
+            for file in "${py_files[@]}"; do
+                if grep -q "breakpoint()" "$file"; then
+                    echo "Error: Found 'breakpoint()' in file '$file'"
+                    error_found=1
+                fi
+            done
+        }
+
+        # Start the search in the specified directory
+        search_py_files "$search_directory"
+    }
+
+    search_for_breakpoint
+    search_for_debugger
+    search_for_only
+
+    if [ "$error_found" -eq 1 ]; then
+
+    else
+        echo "All good!"
+    fi
+}
+
+
+
+
 
 # opendls shorthands
 alias external-web="dc up external-frontend web external-solr create-s3-buckets internal-backend -d"
