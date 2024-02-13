@@ -53,25 +53,21 @@ source $ZSH/oh-my-zsh.sh
 # use "code ." to open vscode
 export EDITOR="code --wait"
 
-#git alias
+#vscode alias
+alias c="code ."
+
+# git alias
 alias gs="git status"
 alias grc="git rebase --continue"
 alias gra="git rebase --abort"
 alias grs="git rebase --skip"
 alias gallcampf="git add -A && git commit --amend --no-edit && git push -f"
-alias machsgeil="_search_files && isort . && black . && flake8"
-alias machsrichtiggeil="bin/isort . && bin/black . && bin/flake8"
+alias main="gco master && git pull -p && grpo"
+alias rebase="main && gco - && git rebase master"
 
-# I allways mess up git pull... My fingers just seem to want to write gitp ull...
-alias gitp="git "
-alias ull='pull'
-
-#custom git alias overwriting plugin
-alias glg="git --no-pager log --graph --abbrev-commit --decorate --format=format:'%C(bold yellow)%d%C(reset) - %C(white)%s%C(reset) %C(magenta)- %an%C(reset) -%C(cyan)%h%C(reset) @%C(green)(%ar)%C(reset)' --all -20"
+# custom git alias overwriting plugin
 alias gba="git --no-pager branch -a"
-alias main="gco master && git pull && git remote prune origin"
 alias grpo="git remote prune origin"
-#override glog and gloga from git plugin
 alias glog="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)'"
 alias gloga="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)' --all"
 
@@ -84,19 +80,30 @@ alias secret="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
 alias argo="sh -c 'sleep 0.5 && open http://localhost:6001' &; kubectl port-forward -n argocd svc/argocd-server 6001:80"
 alias longhorn="sh -c 'sleep 0.5 && open http://localhost:6002' &; kubectl port-forward deployment/longhorn-ui 6002:8000 -n longhorn-system"
 alias rand64="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
+alias klogin="tsh kube login k8s-dls-prod && tsh kube login k8s-dls-test"
 
 # docker & docker-compose
 alias dc="docker-compose"
 alias d="docker"
 alias schickaues="docker ps -aq | xargs docker rm -f"
-alias dps="docker ps | less -S"
-alias dcps="docker-compose ps | less -S"
 
 # venv
-alias activate="source venv/bin/activate"
+alias dac='deactivate'
 
 # django alias
 alias pmp="python manage.py"
+
+# opendls shorthands
+alias opendls="cd ~/repos/opendls"
+
+# mycolex shorthands
+alias update_index="dce backend python manage.py update_index"
+alias rebuild_index="dce backend python manage.py rebuild_index"
+alias mycolex="cd ~/repos/mycolex"
+
+# python alias
+alias machsgeil="_search_files && isort . && black . && flake8"
+alias machsrichtiggeil="bin/isort . && bin/black . && bin/flake8"
 
 # compiler flags
 export LDFLAGS="-L/usr/local/opt/readline/lib -L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/zlib/lib -L/usr/local/opt/openldap/lib -L/usr/local/opt/bzip2/lib"
@@ -125,16 +132,14 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Expose homebrew's sbin directory
-export PATH="/usr/local/sbin:$PATH"
-
-#thefuck package
-eval $(thefuck --alias)
+export PATH="/Users/cristianlluis/bin:/usr/local/sbin:$PATH"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+# Touch and edit a file. I only use it for .feature, .bugfix, .other and .update changelog files
 touchand() {
     if ! [ "$1" ]; then
         echo "need a file!" >&2
@@ -143,10 +148,11 @@ touchand() {
     : > "$1" && vi "$1"
 }
 
-
+# used during file formatting and linting to look for debugging code
 _search_files() {
     local error_found=0
 
+    # searches for .only() in cypress files
     search_for_only() {
         local search_directory="./frontend/test"
 
@@ -166,6 +172,7 @@ _search_files() {
         search_cyjs_files "$search_directory"
     }
 
+    # searches for debugger() in .js and .vue files
     search_for_debugger() {
         local search_directory="./frontend"
 
@@ -185,8 +192,7 @@ _search_files() {
         search_js_vue_files "$search_directory"
     }
 
-
-
+    # searches for breakpoint() in .py files
     search_for_breakpoint() {
         local search_directory="./backend"
 
@@ -217,9 +223,46 @@ _search_files() {
     fi
 }
 
+# Searches for a virtual env in /. and in /venv. Then activates it.
+alias sc="_source_venv"
+_source_venv() {
+    if source venv/bin/activate 2>/dev/null || source bin/activate 2>/dev/null; then
+        # Virtual environment activated successfully
+        return 0
+    else
+        # Virtual environment not found
+        echo "Error: Virtual environment not found."
+        return 1
+    fi
+}
 
+# removes all branches which are fully merged and don't have a remote on origin anymore
+remove_branches() {
+  git branch -vv | grep ': gone]' | grep -v '*' | awk '{ print $1 }' | xargs git branch -d
+}
 
+# short for docker-compose up args. But asks if you really want to boot an entire project (opendls as like a million container)
+up() {
+    if [ "$#" -eq 0 ]; then
+        local response
+        vared -p "Really want to boot the whole app? (y/N) " response
+        if [[ "$response" =~ ^[yY](es)?$ ]]; then
+            dc up -d
+        fi
+    else
+        dc up "$@" -d
+    fi
+}
 
-
-# opendls shorthands
-alias external-web="dc up external-frontend web external-solr create-s3-buckets internal-backend -d"
+# short for docker-compose down args. But asks if you really want to stop an entire project (opendls as like a million container)
+down() {
+    if [ "$#" -eq 0 ]; then
+        local response
+        vared -p "Really want to stop the whole app? (y/N) " response
+        if [[ "$response" =~ ^[yY](es)?$ ]]; then
+            dc down
+        fi
+    else
+        dc down "$@"
+    fi
+}
