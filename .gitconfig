@@ -1,20 +1,27 @@
 [color]
-    ui = true
+	ui = true
 [user]
-    name = Cristian Lluis
-    email = cristian@lluis.ch
+	name = Cristian Lluis
+	email = cristian@lluis.ch
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtY5GaHmq174cRvMFH1qTVEtuC+mMy8QrjQs+YQMDWW
 [push]
-    default = simple
+	default = simple
 [core]
-    autocrlf = input
-    editor = code --wait
-    excludesfile = ~/.gitignore_global
+	autocrlf = input
+	editor = code --wait
+	excludesfile = ~/.gitignore_global
 [pull]
-    rebase = true
+	rebase = true
 [fetch]
-    prune = true
+	prune = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
