@@ -9,6 +9,13 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/repos/dotfiles/spaceship_config.zsh
 
 # ==============================================
+# ================= Homebrew ===================
+# ==============================================
+
+export PATH="/Users/cristianlluis/bin:/usr/local/sbin:$PATH"
+BREW_PREFIX=$(brew --prefix)
+
+# ==============================================
 # ================== VS Code ===================
 # ==============================================
 
@@ -23,7 +30,7 @@ export LC_ALL=en_US.UTF-8 # locale - for keeping git cli in english and not in g
 export LANG=en_US.UTF-8
 source $HOME/repos/dotfiles/functions/remove_branches.sh
 alias gs="git status"
-alias gallcampf="git add -A && git commit --amend --no-edit && git push -f"
+alias joener="git add -A && git commit --amend --no-edit && git push -f"
 alias main="gco master && git pull -p && grpo"
 alias rebase="main && gco - && git rebase master"
 alias gba="git --no-pager branch -a"
@@ -38,7 +45,8 @@ alias gloga="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d 
 alias k=kubectl
 alias ks=kubectx
 alias kns=kubens
-alias argo="sh -c 'sleep 0.5 && open http://localhost:6001' &; kubectl port-forward -n argocd svc/argocd-server 6001:80"
+alias argo-prod="sh -c 'sleep 2 && open http://argo-prod.localhost:6010' &; kubectl --context ras.4tw.cloud-k8s-dls-prod port-forward -n argocd svc/argocd-server 6010:80"
+alias argo-test="sh -c 'sleep 2 && open http://argo-test.localhost:6020' &; kubectl --context ras.4tw.cloud-k8s-dls-test port-forward -n argocd svc/argocd-server 6020:80"
 alias klogin="tsh kube login k8s-dls-prod && tsh kube login k8s-dls-test"
 alias longhorn="sh -c 'sleep 0.5 && open http://localhost:6002' &; kubectl port-forward deployment/longhorn-ui 6002:8000 -n longhorn-system"
 alias rand64="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
@@ -55,7 +63,6 @@ source $HOME/repos/dotfiles/functions/source_env.sh
 source $HOME/repos/dotfiles/functions/search_files.sh
 alias dac='deactivate'
 alias machsgeil="_search_files && isort . && black . && flake8"
-alias machsrichtiggeil="bin/isort . && bin/black . && bin/flake8"
 
 # ==============================================
 # ================= Django =====================
@@ -68,10 +75,10 @@ alias pmp="python manage.py"
 # ==============================================
 
 source $HOME/repos/dotfiles/functions/touchand.sh
-alias opendls="cd ~/repos/opendls"
+alias agora="cd ~/repos/opendls"
+alias oikos="cd ~/repos/mycolex"
 alias update_index="dce backend python manage.py update_index"
 alias rebuild_index="dce backend python manage.py rebuild_index"
-alias mycolex="cd ~/repos/mycolex"
 
 # ==============================================
 # ============== Compiler Flags ================
@@ -84,6 +91,13 @@ export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/bzip2/lib/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/zlib/lib/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openldab/lib/pkgconfig"
+
+# ==============================================
+# ======== ImageMagick compiler Flags ==========
+# ==============================================
+
+export MAGICK_HOME="$BREW_PREFIX/opt/imagemagick"
+export PATH="$BREW_PREFIX/opt/imagemagick/bin:$PATH"
 
 # ==============================================
 # ================== Docker ====================
@@ -100,12 +114,6 @@ alias rmconts="docker ps -aq | xargs docker rm -f"
 # ==============================================
 
 eval "$(pyenv init --path)"
-
-# ==============================================
-# ================= Homebrew ===================
-# ==============================================
-
-export PATH="/Users/cristianlluis/bin:/usr/local/sbin:$PATH"
 
 # ==============================================
 # =================== nvm ======================
