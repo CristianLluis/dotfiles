@@ -19,7 +19,7 @@ BREW_PREFIX=$(brew --prefix)
 # ================== VS Code ===================
 # ==============================================
 
-export EDITOR="code --wait"
+export EDITOR="code"
 source $HOME/repos/dotfiles/functions/open_vscode.sh
 
 # ==============================================
@@ -42,6 +42,7 @@ alias gloga="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d 
 # ================ Kubernetes ==================
 # ==============================================
 
+source $HOME/repos/dotfiles/functions/activate-teleport.zsh
 alias k=kubectl
 alias ks=kubectx
 alias kns=kubens
@@ -52,6 +53,7 @@ alias longhorn="sh -c 'sleep 0.5 && open http://localhost:6002' &; kubectl port-
 alias rand64="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
 alias seal="kubeseal --controller-namespace kube-system --controller-name sealed-secrets --format yaml"
 alias secret="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
+
 
 # ==============================================
 # ============= Virtual Environments ===========
@@ -75,8 +77,9 @@ alias pmp="python manage.py"
 # ==============================================
 
 source $HOME/repos/dotfiles/functions/touchand.sh
-alias agora="cd ~/repos/opendls"
-alias oikos="cd ~/repos/mycolex"
+alias agora="cd ~/repos/agora"
+alias oikos="cd ~/repos/oikos"
+alias zug="cd ~/repos/dls-zug"
 alias update_index="dce backend python manage.py update_index"
 alias rebuild_index="dce backend python manage.py rebuild_index"
 
@@ -91,6 +94,28 @@ export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/bzip2/lib/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openssl@1.1/lib/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/zlib/lib/pkgconfig"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/usr/local/opt/openldab/lib/pkgconfig"
+
+# libxlst
+export PATH="/opt/homebrew/opt/libxslt/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/libxslt/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libxslt/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libxslt/lib/pkgconfig"
+
+# libxml2
+export PATH="/opt/homebrew/opt/libxml2/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/libxml2/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/libxml2/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/libxml2/lib/pkgconfig"
+
+# postgresql
+export PATH="$BREW_PREFIX/opt/postgresql@14/bin:$PATH"
+export LDFLAGS="-L$BREW_PREFIX/opt/postgresql@14/lib $LDFLAGS"
+export CPPFLAGS="-I$BREW_PREFIX/opt/postgresql@14/include $CPPFLAGS"
+export PKG_CONFIG_PATH="$BREW_PREFIX/opt/postgresql@14/lib/pkgconfig $PKG_CONFIG_PATH"
+
+# postgis variables for django
+export GDAL_LIBRARY_PATH="$BREW_PREFIX/lib/libgdal.dylib"
+export GEOS_LIBRARY_PATH="$BREW_PREFIX/lib/libgeos_c.dylib"
 
 # ==============================================
 # ======== ImageMagick compiler Flags ==========
@@ -116,9 +141,14 @@ alias rmconts="docker ps -aq | xargs docker rm -f"
 eval "$(pyenv init --path)"
 
 # ==============================================
-# =================== nvm ======================
+# =================== fnm ======================
 # ==============================================
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+eval "$(fnm env --use-on-cd)"
+
+# ==============================================
+# ==================crontab ====================
+# ==============================================
+
+# use vim for crontab as vscode somehow has issues with it
+alias crontab='VISUAL=vim crontab'
