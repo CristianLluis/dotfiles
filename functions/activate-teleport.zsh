@@ -23,5 +23,5 @@ activate-teleport() {
     fi
 }
 kh() {
-    activate-teleport cll ras.histify.net "op://Employee/x26jokm624trecm6socwo3oz4u/password" hf-k8s-prod hf-k8s-test
+    activate-teleport cll ras.histify.net "op://Employee/x26jokm624trecm6socwo3oz4u/password" hf-k8s-ci3 hf-k8s-prod hf-k8s-test
 }

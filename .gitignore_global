@@ -35,3 +35,6 @@ favicon.ico
 ### temp ###
 */Dockerfile.dev
 */Dockerfile.testing
+
+### node ###
+.node-version

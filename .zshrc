@@ -46,10 +46,7 @@ source $HOME/repos/dotfiles/functions/activate-teleport.zsh
 alias k=kubectl
 alias ks=kubectx
 alias kns=kubens
-alias argo-prod="sh -c 'sleep 2 && open http://argo-prod.localhost:6010' &; kubectl --context ras.4tw.cloud-k8s-dls-prod port-forward -n argocd svc/argocd-server 6010:80"
-alias argo-test="sh -c 'sleep 2 && open http://argo-test.localhost:6020' &; kubectl --context ras.4tw.cloud-k8s-dls-test port-forward -n argocd svc/argocd-server 6020:80"
 alias klogin="tsh kube login k8s-dls-prod && tsh kube login k8s-dls-test"
-alias longhorn="sh -c 'sleep 0.5 && open http://localhost:6002' &; kubectl port-forward deployment/longhorn-ui 6002:8000 -n longhorn-system"
 alias rand64="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
 alias seal="kubeseal --controller-namespace kube-system --controller-name sealed-secrets --format yaml"
 alias secret="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
@@ -132,7 +129,7 @@ source $HOME/repos/dotfiles/functions/dc_up.sh
 source $HOME/repos/dotfiles/functions/dc_down.sh
 alias dc="docker-compose"
 alias d="docker"
-alias rmconts="docker ps -aq | xargs docker rm -f"
+alias rmconts="docker ps -aq | xargs docker rm -f && docker network prune -f"
 
 # ==============================================
 # ================== pyenv =====================
@@ -152,3 +149,9 @@ eval "$(fnm env --use-on-cd)"
 
 # use vim for crontab as vscode somehow has issues with it
 alias crontab='VISUAL=vim crontab'
+
+# ==============================================
+# =================== PDFJS ====================
+# ==============================================
+
+export DJANGO_PDFJS_LICENSE_KEY="EN2cV9vPsuEmhSY9XfXW"
