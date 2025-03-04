@@ -155,3 +155,9 @@ alias crontab='VISUAL=vim crontab'
 # ==============================================
 
 export DJANGO_PDFJS_LICENSE_KEY="EN2cV9vPsuEmhSY9XfXW"
+
+# ==============================================
+# ================== JAVA 🤷🏻‍♀️ ===================
+# ==============================================
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
