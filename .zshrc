@@ -4,7 +4,7 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="spaceship" # https://github.com/spaceship-prompt/spaceship-prompt
-plugins=(git docker docker-compose kubectl)
+plugins=(git docker docker-compose kubectl kube-ps1)
 source $ZSH/oh-my-zsh.sh
 source $HOME/repos/dotfiles/spaceship_config.zsh
 
@@ -162,3 +162,9 @@ export DJANGO_PDFJS_LICENSE_KEY="EN2cV9vPsuEmhSY9XfXW"
 # ==============================================
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
+# ==============================================
+# ========== Add custom bin to PATH ============
+# ==============================================
+
+export PATH="/Users/cris/repos/dotfiles/bin:$PATH"

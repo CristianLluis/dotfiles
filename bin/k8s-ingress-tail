@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+kubectl logs daemonsets/ingress-nginx-controller -f --tail 100 | awk '{
+    split($0, parts, "\"");
+    split(parts[1], part1, /[\[\]]/)
+    split(parts[3], part3, " ");
+    split(parts[7], part7, /[\[\]]/);
+    date=part1[2]
+    responseCode = part3[1];
+    pod = part7[2];
+    userAgent = parts[6];
+
+    split(pod, podParts, "-");
+    reducedPod = podParts[1] "-" podParts[2] "-" podParts[3];
+
+    green="\033[0;32m"
+    blue="\033[0;34m"
+    red="\033[0;31m"
+    reset="\033[0m"
+
+    if (responseCode ~ /^2/) {
+        color = green
+    } else if (responseCode ~ /^4/) {
+        color = blue
+    } else if (responseCode ~ /^5/) {
+        color = red
+    } else {
+        color = reset
+    }
+
+    printf "%s   %s    %-30s %s\n", date, color responseCode reset, reducedPod, userAgent
+}'
