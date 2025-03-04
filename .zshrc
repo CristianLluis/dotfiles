@@ -30,7 +30,7 @@ export LC_ALL=en_US.UTF-8 # locale - for keeping git cli in english and not in g
 export LANG=en_US.UTF-8
 source $HOME/repos/dotfiles/functions/remove_branches.sh
 alias gs="git status"
-alias joener="git add -A && git commit --amend --no-edit && git push -f"
+alias jöner="git add -A && git commit --amend --no-edit && git push -f"
 alias main="gco master && git pull -p && grpo"
 alias rebase="main && gco - && git rebase master"
 alias gba="git --no-pager branch -a"
