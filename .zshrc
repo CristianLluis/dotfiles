@@ -77,8 +77,9 @@ source $HOME/repos/dotfiles/functions/touchand.sh
 alias agora="cd ~/repos/agora"
 alias oikos="cd ~/repos/oikos"
 alias zug="cd ~/repos/dls-zug"
-alias update_index="dce backend python manage.py update_index"
-alias rebuild_index="dce backend python manage.py rebuild_index"
+alias landi="cd ~/repos/landi-dms"
+alias test="cd ~/repos/hf.k8s-test"
+alias prod="cd ~/repos/hf.k8s-prod"
 
 # ==============================================
 # ============== Compiler Flags ================
