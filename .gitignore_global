@@ -18,6 +18,8 @@ pyvenv.cfg
 venv/
 *_venv/
 pip-selfcheck.json
+__pycache__/
+
 # comment out if env is needed
 # .env
 # env/
