@@ -40,3 +40,7 @@ favicon.ico
 
 ### node ###
 .node-version
+
+### Stuff files for local development ###
+nha_migration/
+*.override.yml
