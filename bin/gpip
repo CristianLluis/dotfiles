@@ -1,0 +1,5 @@
+# global pip executalble for bypassing virtuel env obligation
+
+#!/bin/sh
+PIP_REQUIRE_VIRTUALENV=""
+pip "$@"

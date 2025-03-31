@@ -73,7 +73,6 @@ alias secret="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
 # ==============================================
 
 export PIP_REQUIRE_VIRTUALENV=true
-source $HOME/repos/dotfiles/functions/gpip.sh
 source $HOME/repos/dotfiles/functions/source_env.sh
 source $HOME/repos/dotfiles/functions/search_files.sh
 alias dac='deactivate'
