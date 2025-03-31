@@ -27,6 +27,8 @@ PS1='$(kube_ps1)'$PS1'%(?:%{$fg[green]%}➜%{$reset_color%}:%{$fg_bold[red]%}✖
 # ==============================================
 
 export PATH="/Users/cristianlluis/bin:/usr/local/sbin:$PATH"
+export HOMEBREW_BUNDLE_DUMP_NO_VSCODE=true
+export HOMEBREW_BUNDLE_FILE="$HOME/Brewfile"
 BREW_PREFIX=$(brew --prefix)
 
 # ==============================================
