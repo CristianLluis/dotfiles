@@ -2,9 +2,12 @@
 # ================ Oh My Zsh ===================
 # ==============================================
 
+# Create a symlink to home directory.
+# ln -s ~/repos/dotfiles/.zshrc ~/.zshrc
+
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="fwalch"
-plugins=(git docker docker-compose kubectl kube-ps1)
+ZSH_THEME="cll"
+plugins=(git docker docker-compose kubectl kube-ps1 virtualenv)
 source $ZSH/oh-my-zsh.sh
 KUBE_PS1_SYMBOL_ENABLE="false"
 source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
