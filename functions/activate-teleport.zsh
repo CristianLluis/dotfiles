@@ -11,11 +11,11 @@ activate-teleport() {
     if ! kubectl get nodes 2>/dev/null >/dev/null; then
         op signin --account histify.1password.com
         op read $opitem | pbcopy
-        echo tsh login --mfa-mode=otp --user=$user --proxy=$host:443 $host
-        tsh login --mfa-mode=otp --user=$user --proxy=$host:443 $host
+        echo tsh login --mfa-mode=cross-platform --user=$user --proxy=$host:443 $host
+        tsh login --mfa-mode=cross-platform --user=$user --proxy=$host:443 $host
         for cluster in $clusters; do
             echo $cluster
-            tsh kube --mfa-mode=otp --user=$user --proxy=$host:443 login $cluster
+            tsh kube --mfa-mode=cross-platform --user=$user --proxy=$host:443 login $cluster
         done
     fi
     if typeset -f kubeon > /dev/null; then
