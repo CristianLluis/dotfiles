@@ -79,6 +79,27 @@ alias seal="kubeseal --controller-namespace kube-system --controller-name sealed
 alias secret="openssl rand -hex 25 | tr -d '\n' | base64 | tr -d '\n' | pbcopy"
 
 
+kdbdump() {
+    pod=$1
+    shift 1
+    file=$1
+    shift 1
+    kubectl exec $pod -- bash -c "pg_dump -U postgres postgres | gzip" > $file
+}
+
+kdbload() {
+    pod=$1
+    shift 1
+    file=$1
+    shift 1
+    kubectl cp $file $pod:/tmp/
+    kubectl exec $pod -- bash -c "dropdb -U postgres postgres; createdb -U postgres postgres; cat /tmp/$file | gunzip | psql -U postgres postgres"
+}
+
+kdblist() {
+    kubectl get pod | grep db
+}
+
 # ==============================================
 # ============= Virtual Environments ===========
 # ==============================================
