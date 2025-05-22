@@ -45,5 +45,6 @@ favicon.ico
 .node-version
 
 ### Stuff files for local development ###
-nha_migration/
+*/nha_migration/fixtures/
+*/nha_migration/nha_data/
 *.override.yml
