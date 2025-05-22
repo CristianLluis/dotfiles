@@ -54,6 +54,17 @@ alias grpo="git remote prune origin"
 alias glog="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)'"
 alias gloga="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)' --all"
 
+# aliases used often within git and repos context
+source $HOME/repos/dotfiles/functions/touchand.sh
+alias agora="cd ~/repos/agora"
+alias oikos="cd ~/repos/oikos"
+alias zug="cd ~/repos/dls-zug"
+alias landi="cd ~/repos/landi-dms"
+alias test="cd ~/repos/hf.k8s-test"
+alias prod="cd ~/repos/hf.k8s-prod"
+alias dotfiles="cd ~/repos/dotfiles"
+alias gist="cd ~/repos/glam-gist"
+
 # ==============================================
 # ================ Kubernetes ==================
 # ==============================================
@@ -83,18 +94,6 @@ alias machsgeil="_search_files && isort . && black . && flake8"
 # ==============================================
 
 alias pmp="python manage.py"
-
-# ==============================================
-# ============ Project shorthands ==============
-# ==============================================
-
-source $HOME/repos/dotfiles/functions/touchand.sh
-alias agora="cd ~/repos/agora"
-alias oikos="cd ~/repos/oikos"
-alias zug="cd ~/repos/dls-zug"
-alias landi="cd ~/repos/landi-dms"
-alias test="cd ~/repos/hf.k8s-test"
-alias prod="cd ~/repos/hf.k8s-prod"
 
 # ==============================================
 # ============== Compiler Flags ================
@@ -183,3 +182,9 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # ==============================================
 
 export PATH="/Users/cris/repos/dotfiles/bin:$PATH"
+
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/cris/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
