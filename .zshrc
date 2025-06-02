@@ -6,21 +6,8 @@
 # ln -s ~/repos/dotfiles/.zshrc ~/.zshrc
 
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="cll"
 plugins=(git docker docker-compose kubectl kube-ps1 virtualenv)
 source $ZSH/oh-my-zsh.sh
-KUBE_PS1_SYMBOL_ENABLE="false"
-source "/opt/homebrew/opt/kube-ps1/share/kube-ps1.sh"
-function context_alias() {
-  case "$1" in
-    "ras.histify.net-hf-k8s-test") echo "k8s-test" ;;
-    "ras.histify.net-hf-k8s-prod") echo "k8s-prod" ;;
-    "ras.histify.net-hf-k8s-ci3") echo "k8s-ci3" ;;
-    *) echo "$1" ;;
-  esac
-}
-KUBE_PS1_CLUSTER_FUNCTION=context_alias
-PS1='$(kube_ps1)'$PS1'%(?:%{$fg[green]%}➜%{$reset_color%}:%{$fg_bold[red]%}✖%{$reset_color%}) '
 
 # ==============================================
 # ================= Homebrew ===================
@@ -209,3 +196,6 @@ fpath=(/Users/cris/.docker/completions $fpath)
 autoload -Uz compinit
 compinit
 # End of Docker CLI completions
+
+# Starship prompt starship.rs
+eval "$(starship init zsh)"
