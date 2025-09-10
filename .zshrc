@@ -54,7 +54,7 @@ export LANG=en_US.UTF-8
 source $HOME/repos/dotfiles/functions/remove_branches.sh
 alias gs="git status"
 alias gfix="git add -A && git commit --amend --no-edit && git push -f"
-alias main="gco master && git pull -p && grpo"
+alias main="gco master && git pull -p && git remote prune origin"
 alias rebase="main && gco - && git rebase master"
 alias gba="git --no-pager branch -a"
 alias glog="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)'"
