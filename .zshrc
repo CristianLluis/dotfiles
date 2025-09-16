@@ -43,7 +43,6 @@ BREW_PREFIX=$(brew --prefix)
 # ==============================================
 
 export EDITOR="code"
-source $HOME/repos/dotfiles/functions/open_vscode.sh
 
 # ==============================================
 # ==================== Git =====================

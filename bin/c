@@ -1,0 +1,48 @@
+#!/bin/zsh
+
+_findWorkspace() {
+  local dir="$1"
+  local -a matches
+  matches=(${dir%/}/*.code-workspace(NOm))
+  if [[ ${#matches[@]} -gt 0 ]]; then
+    echo "${matches[1]}"
+  else
+    echo "$dir"
+  fi
+}
+
+# handle options
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  cat <<EOF
+
+Usage: c [path]
+Arguments:
+  <path>  Optional file or directory.
+          - If omitted: open current dir, or newest *.code-workspace if present.
+          - If directory: open newest *.code-workspace inside, or the directory itself.
+          - If file: open file.
+Options:
+  -h, --help  Print usage.
+
+EOF
+  exit 0
+elif [[ "$1" == --* ]]; then
+  echo "Error: unknown option '$1'"
+  echo "Use -h or --help for usage information."
+  exit 1
+fi
+
+# main logic
+if [[ $# -eq 0 ]]; then
+  path=$(_findWorkspace ".")
+elif [[ -d "$1" ]]; then
+  path=$(_findWorkspace "$1")
+elif [[ -f "$1" ]]; then
+  path="$1"
+else
+  echo "could not find '$1'"
+  exit 1
+fi
+
+OPEN="/usr/bin/open"
+"$OPEN" -a "Visual Studio Code" "$path"
