@@ -142,3 +142,10 @@ export PATH="/Users/cris/repos/dotfiles/bin:$PATH"
 # ==============================================
 
 eval "$(starship init zsh)"
+
+# ==============================================
+# ================= Postgres ===================
+# ==============================================
+
+export PGUSER=postgres
+export PGDATABASE=postgres
