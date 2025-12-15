@@ -44,3 +44,6 @@ favicon.ico
 */nha_migration/fixtures/
 */nha_migration/nha_data/
 *.override.yml
+
+### codex ###
+AGENTS.md

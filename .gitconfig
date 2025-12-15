@@ -30,3 +30,5 @@
 	gpgsign = true
 [completion]
 	verbose = false
+[init]
+	defaultBranch = main
