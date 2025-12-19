@@ -70,7 +70,7 @@ alias kns=kubens
 
 # Needed for hf-teleport plugin
 HF_KH_USER=cll
-HF_KH_OP_PASSWORD_REF="op://Employee/x26jokm624trecm6socwo3oz4u/password"
+HF_KH_OP_PASSWORD_REF="op://Employee/cll histify Teleport/password"
 HF_KH_CLUSTERS=(hf-k8s-test hf-k8s-prod)
 
 # ==============================================
