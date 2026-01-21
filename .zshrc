@@ -13,7 +13,9 @@ plugins=(
     docker-compose
 )
 
+# Zinit will load this plugins
 ZSH_PLUGIN_DIRS=(
+  "$HOME/repos/dotfiles/zsh/plugins"
   "$HOME/repos/dotfiles/histify/zsh/plugins"
 )
 
@@ -74,10 +76,7 @@ HF_KH_CLUSTERS=(hf-k8s-test hf-k8s-prod)
 
 export PIP_REQUIRE_VIRTUALENV=true
 source $HOME/repos/dotfiles/functions/source_env.sh
-source $HOME/repos/dotfiles/functions/search_files.sh
 alias dac='deactivate'
-alias machsgeil="_search_files && isort . && black . && flake8"
-
 
 # ==============================================
 # ================== Docker ====================
@@ -168,7 +167,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
-
 ### End of Zinit's installer chunk
 
 # Load multiple local plugin directories via zinit
