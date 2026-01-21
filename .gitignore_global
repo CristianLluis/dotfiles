@@ -45,5 +45,8 @@ favicon.ico
 */nha_migration/nha_data/
 *.override.yml
 
+### Frontend linting ###
+.eslintcache
+
 ### codex ###
 AGENTS.md
