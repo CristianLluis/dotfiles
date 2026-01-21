@@ -24,5 +24,4 @@ cask "rectangle"
 cask "slack"
 cask "spotify"
 cask "visual-studio-code"
-cask "keepingyouawake"
-
+cask "caffeine"
