@@ -7,23 +7,18 @@
 
 export ZSH="$HOME/.oh-my-zsh"
 
-# Using own custom stuff for omz. Inside this repos live all shared plugins I need for work
-export ZSH_CUSTOM="$HOME/repos/dotfiles/histify/zsh"
-
 plugins=(
     git
     docker
     docker-compose
-    c-stsha
-    hf-brew
-    hf-k8s
-    hf-ops
-    hf-poros
-    hf-proxy
-    hf-teleport
+)
+
+ZSH_PLUGIN_DIRS=(
+  "$HOME/repos/dotfiles/histify/zsh/plugins"
 )
 
 source $ZSH/oh-my-zsh.sh
+
 # ==============================================
 # ================= Homebrew ===================
 # ==============================================
@@ -175,3 +170,13 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-rust
 
 ### End of Zinit's installer chunk
+
+# Load multiple local plugin directories via zinit
+for dir in "${ZSH_PLUGIN_DIRS[@]}"; do
+  [[ -d "$dir" ]] || continue
+
+  for plugin in "$dir"/*; do
+    [[ -d "$plugin" ]] || continue
+    zinit light "$plugin"
+  done
+done
