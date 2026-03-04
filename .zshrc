@@ -178,3 +178,9 @@ for dir in "${ZSH_PLUGIN_DIRS[@]}"; do
     zinit light "$plugin"
   done
 done
+
+# ==============================================
+# ================== Openssh ===================
+# ==============================================
+
+export PATH=$(brew --prefix openssh)/bin:$PATH
