@@ -1,8 +1,7 @@
 # Create a symlink to home directory.
 # ln -s ~/repos/dotfiles/Brewfile ~/Brewfile
 
-tap "homebrew/bundle"
-tap "homebrew/services"
+
 
 brew "node"
 brew "pnpm"
