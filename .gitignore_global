@@ -50,3 +50,7 @@ favicon.ico
 
 ### codex ###
 AGENTS.md
+
+### yalc pnpm package ###
+.yalc/
+yalc.lock
