@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "DAILY=/Users/cris/repos/obsidian-vaults/Cristian/daily/$(date +%Y-%m-%d).md; if [ -f \"$DAILY\" ]; then echo \"=== Today's journal ($(date +%Y-%m-%d)) ===\"; cat \"$DAILY\"; else echo \"No daily note yet for $(date +%Y-%m-%d).\"; fi"
+          }
+        ]
+      }
+    ]
+  }
+}
