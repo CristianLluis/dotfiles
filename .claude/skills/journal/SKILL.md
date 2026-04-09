@@ -7,7 +7,9 @@ Create a session note in the Obsidian vault at `/Users/cris/repos/obsidian-vault
 
 Follow these steps:
 
-1. **Determine the session filename**: Use the format `YYYY-MM-DD-<short-topic>.md` based on today's date and the main topic of this session. Example: `2026-04-09-vault-setup.md`.
+1. **Load vault context**: Read `/Users/cris/repos/obsidian-vaults/Cristian/CLAUDE.md` for vault structure and conventions.
+
+2. **Determine the session filename**: Use the format `YYYY-MM-DD-<short-topic>.md` based on today's date and the main topic of this session. Example: `2026-04-09-vault-setup.md`.
 
 2. **Create the session note** at `sessions/<filename>` using this structure:
 
@@ -42,8 +44,8 @@ status: complete
 - [ ] <concrete next actions>
 ```
 
-3. **Update today's daily note** at `daily/<YYYY-MM-DD>.md`:
+4. **Update today's daily note** at `daily/<YYYY-MM-DD>.md`:
    - If it exists, append a wikilink to the session note under the `## Sessions` section.
    - If it doesn't exist, just note that in your response — don't create it automatically.
 
-4. **Report back** with the session note filename and a one-line summary of what was logged.
+5. **Report back** with the session note filename and a one-line summary of what was logged.
