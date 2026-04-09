@@ -49,6 +49,7 @@ favicon.ico
 .eslintcache
 
 ### codex ###
+.codex/
 AGENTS.md
 
 ### yalc pnpm package ###
