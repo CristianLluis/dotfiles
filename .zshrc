@@ -189,6 +189,9 @@ for dir in "${ZSH_PLUGIN_DIRS[@]}"; do
   done
 done
 
+# Replay compdef calls captured while loading zinit plugins.
+zinit cdreplay -q
+
 # ==============================================
 # ================== Openssh ===================
 # ==============================================
