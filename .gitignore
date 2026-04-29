@@ -1,1 +1,4 @@
 histify/
+
+!.codex/
+!.codex/**

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Session Journal"
+  short_description: "Create a session note and backlink it from today's daily note"
+  default_prompt: "Use $journal to create a session note in the Cristian Obsidian vault and add it to today's daily note."

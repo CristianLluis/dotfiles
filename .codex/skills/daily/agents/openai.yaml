@@ -1,0 +1,4 @@
+interface:
+  display_name: "Daily Note"
+  short_description: "Create or update today's daily note with carry-forward tasks"
+  default_prompt: "Use $daily to create or update today's note in the Cristian Obsidian vault and carry unfinished items forward."

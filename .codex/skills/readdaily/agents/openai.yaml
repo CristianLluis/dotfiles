@@ -1,0 +1,4 @@
+interface:
+  display_name: "Read Daily"
+  short_description: "Read today's daily note or report that it does not exist"
+  default_prompt: "Use $readdaily to read today's daily note from the Cristian Obsidian vault."
