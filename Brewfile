@@ -8,6 +8,7 @@ brew "pnpm"
 brew "wget"
 brew "starship"
 brew "kubectx"
+brew "watch"
 
 cask "appcleaner"
 cask "cyberduck"

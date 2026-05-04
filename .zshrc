@@ -13,7 +13,7 @@ plugins=(
     docker-compose
 )
 
-# Zinit will load this plugins
+# Zinit will load custom plugins from this folders
 ZSH_PLUGIN_DIRS=(
   "$HOME/repos/dotfiles/zsh/plugins"
   "$HOME/repos/dotfiles/histify/zsh/plugins"
@@ -55,6 +55,8 @@ alias rebase="main && gco - && git rebase master"
 alias gba="git --no-pager branch -a"
 alias glog="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)'"
 alias gloga="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)' --all"
+alias hrglog='watch -c -w -t -n 1 "git -c color.ui=always log --pretty=\"%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s\" --graph --date=format:\"%d-%m-%y(%H:%M)\"" ; reset'
+alias hrgloga='watch -c -w -t -n 1 "git -c color.ui=always log --pretty=\"%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s\" --graph --date=format:\"%d-%m-%y(%H:%M)\" --all" ; reset'
 
 
 # ==============================================
