@@ -113,6 +113,7 @@ eval "$(fnm env --use-on-cd)"
 # ==============================================
 
 export PNPM_HOME="/Users/cris/Library/pnpm"
+export COREPACK_ENABLE_AUTO_PIN=0
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
