@@ -9,6 +9,7 @@ brew "wget"
 brew "starship"
 brew "kubectx"
 brew "watch"
+brew "cliclick"
 
 cask "appcleaner"
 cask "cyberduck"

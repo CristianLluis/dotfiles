@@ -205,4 +205,16 @@ export PATH=$(brew --prefix openssh)/bin:$PATH
 # ==============================================
 # ================ Claude code =================
 # ==============================================
+
 export PATH="$HOME/.local/bin:$PATH"
+
+# ==============================================
+# ============= Shizzle Funizzle ===============
+# ==============================================
+
+# Cliclick paste
+cstroke() {
+  sleep "${1:-4}" && cliclick -w 5 t:"$(pbpaste)"
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
