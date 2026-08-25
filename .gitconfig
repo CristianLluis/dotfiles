@@ -5,7 +5,7 @@
 	ui = true
 [user]
 	name = Cristian Lluis
-	email = cristian@lluis.ch
+	email = cristian@lluis.me
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAtY5GaHmq174cRvMFH1qTVEtuC+mMy8QrjQs+YQMDWW
 [push]
 	default = simple
