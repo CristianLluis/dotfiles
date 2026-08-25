@@ -7,15 +7,29 @@ disabled = true
 
 [kubernetes]
 disabled = false
-symbol =  '☸️ '
 format = '[$namespace $symbol]($style)'
+
+[[kubernetes.contexts]]
+context_pattern = 'ras.histify.net-hf-k8s-prod'
+style = 'bold red'
+symbol = '⛈️ 🔴 '
+
+[[kubernetes.contexts]]
+context_pattern = 'ras.histify.net-hf-k8s-test'
+style = 'bold yellow'
+symbol = '⛅️ 🟡 '
 
 [character]
 success_symbol = '[➜](bold green) '
 error_symbol = '[➜](bold red) '
 
 [python]
-format = '[($symbol$virtualenv )]($style)'
+symbol = '🐍'
+format = '[$symbol]($style) '
+detect_extensions = []
+detect_files = []
+detect_folders = []
+detect_env_vars = ['VIRTUAL_ENV']
 
 [nodejs]
 disabled = true
@@ -37,4 +51,7 @@ behind = '⇣${count}'
 disabled = true
 
 [package]
+disabled = true
+
+[docker_context]
 disabled = true
