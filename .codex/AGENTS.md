@@ -10,6 +10,7 @@ Stable personal defaults. Repository instructions override this file.
 - Prefer the smallest relevant context for the task.
 - For non-trivial changes, briefly plan before coding.
 - State assumptions explicitly when requirements are unclear.
+- Close spawned subagents once they are done and their results have been consumed.
 
 ## Verification
 
