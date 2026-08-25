@@ -2,3 +2,6 @@ histify/
 
 !.codex/
 !.codex/**
+
+!.claude/
+!.claude/**

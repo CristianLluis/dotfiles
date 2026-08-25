@@ -48,10 +48,12 @@ favicon.ico
 ### Frontend linting ###
 .eslintcache
 
-### codex ###
+### AI config ###
 .codex/
 .agents/
 AGENTS.md
+.claude
+CLAUDE.md
 
 ### yalc pnpm package ###
 .yalc/
