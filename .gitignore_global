@@ -49,12 +49,12 @@ favicon.ico
 .eslintcache
 
 ### AI config ###
-.codex/
-.agents/
+.codex
+.agents
 AGENTS.md
 .claude
 CLAUDE.md
 
 ### yalc pnpm package ###
-.yalc/
+.yalc
 yalc.lock
