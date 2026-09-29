@@ -219,3 +219,9 @@ cstroke() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# ==============================================
+# ========== Karpenter (thx jone ❤️) ===========
+# ==============================================
+
+export PATH="$HOME/repos/karpenter/bin:$PATH"
