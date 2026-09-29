@@ -57,6 +57,7 @@ alias glog="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %
 alias gloga="git log --pretty='%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s' --graph --date=format:'%d-%m-%y(%H:%M)' --all"
 alias hrglog='watch -c -w -t -n 1 "git -c color.ui=always log --pretty=\"%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s\" --graph --date=format:\"%d-%m-%y(%H:%M)\"" ; reset'
 alias hrgloga='watch -c -w -t -n 1 "git -c color.ui=always log --pretty=\"%C(yellow)%h %C(cyan)%cd %Cblue%aN ⇒%C(auto)%d %Creset%s\" --graph --date=format:\"%d-%m-%y(%H:%M)\" --all" ; reset'
+alias gria='git rebase -i --autosquash'
 
 
 # ==============================================
